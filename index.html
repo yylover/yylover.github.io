@@ -117,7 +117,62 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>一、语言设计理念</p>
+<pre><code>Go希望成为互联网时代的C语言。而大多数系统级语言的编程哲学来源于C++，采用面向对象的思想，它的理念是来源于C,设计足够简单的语言。
+互联网时代的C语言需要考虑什么问题呢？
+1) 并行与分布式的支持。（多核化和集群化是互联网时代的典型特征）
+2) 软件工程的支持。(软件质量，团队协作)
+3）编程哲学的重塑。
+</code></pre><ol>
+<li><p>并行和分布式的支持<br> 1） 并发执行的执行体。系统级层面有多个概念与之对应。如操作系统自己掌管的进程，进程内的线程以及进程内的协程。多数语言在语法级层面并不直接支持协程，而是通过库的方式(这种支持并不完整，比如仅仅提供协程的创建、销毁和切换)。如果调用系统调用，那么会阻塞其他并发执行的协程。</p>
+<pre><code>Go语言层级支持协程,称为goroutine。在协程内的系统级调用，会出让CPU给其他协程。
+</code></pre><p> 2） 执行体的通信：互斥和同步，消息传递。(多数语言仅提供线程间的同步和互斥支持，没有提供协程的)</p>
+<pre><code>对于消息传递，有共享内存模型和消息传递模型。Go选择后者，协程之间通过channel来实现。
+</code></pre></li>
+<li><p>软件工程<br> 1) 规范<br> 2）错误处理</p>
+<pre><code>defer : 不管程序是否异常退出，均在函数退出时执行相关代码。
+</code></pre><p> 3) 包管理<br> 4）接口规范<br> 5) 测试</p>
+</li>
+</ol>
+<ol>
+<li>编程哲学<br> 面向过程: C<br> 面向对象。C++,java C#<br> 函数式编程:<br> 面向消息编程<br> Go<br> 1) 反对函数和运算符重载。<br> 2) 支持类、类成员方法、类组合，反对继承，反对虚函数，反对构造函数和析构函数<br> 3） 提供接口。最大的特点是非侵入性。</li>
+</ol>
+<p>二、语言特性<br>    Go的主要语言特性如下:</p>
+<pre><code>1. 自动垃圾回收
+内存泄露最佳解决方案是语言级别引入自动回收算法(GC)。即所有的内存分配动作会在运行时被记录，同时使用内存也会记录，当没有调用时，就阶段性回收这些内存。
+
+2. 丰富的内置语言类型
+slice  map
+3. 函数多返回值
+返回值也可以通过赋值方式返回，不感兴趣的可以不接受
+</code></pre><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getName</span><span class="params">()</span> <span class="params">(name1 <span class="keyword">string</span>, name2 <span class="keyword">string</span>)</span></span> &#123;</div><div class="line">	name1 = <span class="string">"yang"</span></div><div class="line">	name2 = <span class="string">"wang"</span></div><div class="line">	<span class="keyword">return</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	name, _ := getName()</div><div class="line">	fmt.Println(<span class="string">"hello %s"</span>, name)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>4. 错误处理
+</code></pre><p>标准错误处理:defer panic recover</p>
+<pre><code>5. 匿名函数、闭包
+</code></pre><p>Go中，所有的函数也是值类型。可以作为函数传递。</p>
+<pre><code>6. 类型、接口
+</code></pre><p>1）概念接近C语言的结构struct,并不支持继承和重载<br>2) 非侵入式接口</p>
+<pre><code>7. 并发编程
+
+
+8. 反射
+通过反射可以获取对象类型的详细信息，动态操作对象，不能根据类型创建对象实例。常见的场景是对象序列化。
+</code></pre><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> People <span class="keyword">struct</span> &#123;</div><div class="line">	name <span class="keyword">string</span></div><div class="line">	age <span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">getElems</span><span class="params">(people *People)</span></span> &#123;</div><div class="line">	s := reflect.ValueOf(people).Elem()</div><div class="line">	typeofs := s.Type()</div><div class="line"></div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; s.NumField(); i++ &#123;</div><div class="line">		f := s.Field(i)</div><div class="line">		fmt.Printf(<span class="string">"%d %s %v\n"</span>, i, typeofs.Field(i).Name, f.Type())</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>9. 语言交互性
+</code></pre><p>可以按Cgo语法混合编写c语言。</p>
+<p>三、基本概念补充</p>
+<ol>
+<li>编译、解释<br>编译：一次把所有语言转换成机器语言，写成可执行文件。<br>解释型:程序执行到源程序的一条指令，会有一个称为解释程序的外壳程序将源代码转成二进制代码执行。</li>
+</ol>
+<p>前者速度快，同等条件对系统要求低，适合开发操作系统、大型应用程序、数据库系统等。后者适合一些网页脚本、服务器脚本等对速度要求不高、对不同系统牌太兼容性有要求的程序。</p>
+<ol>
+<li><p>动态、静态<br> 动态类型语言:运行期间才做数据类型的检查。<br> 静态类型语言:编译期间就要检查的。</p>
+<p> 强类型语言:一旦变量被指定某个数据类型，如果不进行强制转换，那么永远是这个数据类型。是类型安全语言。<br> 弱类型语言:数据类型可以忽略，一个变量可以赋不同的数据类型的值。</p>
+<p> python :强动态语言 GO: 强静态语言</p>
+</li>
+<li>并发、并行<br> 并行：同时发生的两个并发时间。<br> 并发:能处理同时性活动能力。</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
