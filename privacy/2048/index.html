@@ -1,28 +1,12 @@
-#!/usr/bin/env python3
-import markdown
-import os
 
-# 读取Markdown文件
-def read_markdown(file_path):
-    with open(file_path, 'r', encoding='utf-8') as f:
-        return f.read()
-
-# 转换Markdown为HTML
-def convert_to_html(markdown_text):
-    return markdown.markdown(markdown_text, extensions=['fenced_code', 'codehilite', 'tables'])
-
-# 生成完整的HTML页面
-def generate_full_html(title, content, language='zh'):
-    # 基础HTML模板，基于项目现有页面结构
-    template = f'''
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
-  <title>{title} | iOS应用技术支持</title>
+  <title>2048隐私政策 | iOS应用技术支持</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="{title}">
+  <meta name="description" content="2048隐私政策">
   
     <link rel="alternative" href="/atom.xml" title="iOS应用技术支持" type="application/atom+xml">
   
@@ -92,7 +76,7 @@ def generate_full_html(title, content, language='zh'):
         
   
     <h1 class="article-title" itemprop="name">
-      {title}
+      2048隐私政策
     </h1>
   
 
@@ -100,7 +84,101 @@ def generate_full_html(title, content, language='zh'):
     
     <div class="article-entry" itemprop="articleBody">
       
-{content}
+<h1>隐私政策</h1>
+<p><strong>生效日期：2026年2月14日</strong></p>
+<p>本隐私政策描述了 2048 Game 应用如何收集、使用和共享您的个人信息。</p>
+<h2>1. 我们收集的信息</h2>
+<h3>1.1 设备信息</h3>
+<ul>
+<li>设备标识符 (IDFA)：用于投放个性化广告</li>
+<li>设备型号和操作系统版本：用于优化应用性能</li>
+<li>设备语言设置：用于提供本地化内容</li>
+</ul>
+<h3>1.2 使用信息</h3>
+<ul>
+<li>游戏分数和游戏进度：用于保存游戏状态</li>
+<li>游戏使用频率和时长：用于分析应用使用情况</li>
+<li>广告点击数据：用于广告效果分析</li>
+</ul>
+<h3>1.3 位置信息</h3>
+<ul>
+<li>我们不会收集您的精确位置信息</li>
+</ul>
+<h2>2. 信息使用方式</h2>
+<h3>2.1 应用功能</h3>
+<ul>
+<li>保存游戏进度，确保您可以继续上次的游戏</li>
+<li>记录游戏分数，提供游戏排行榜</li>
+<li>优化游戏性能和用户体验</li>
+</ul>
+<h3>2.2 广告投放</h3>
+<ul>
+<li>使用设备标识符 (IDFA) 投放个性化广告</li>
+<li>分析广告效果，改进广告投放策略</li>
+</ul>
+<h3>2.3 应用改进</h3>
+<ul>
+<li>分析用户行为，改进游戏功能</li>
+<li>修复应用漏洞和问题</li>
+<li>开发新功能和游戏模式</li>
+</ul>
+<h2>3. 信息共享</h2>
+<h3>3.1 第三方服务</h3>
+<ul>
+<li><strong>广告服务提供商</strong>：我们可能与广告服务提供商共享设备标识符和使用信息，以投放个性化广告</li>
+<li><strong>分析服务提供商</strong>：我们可能与分析服务提供商共享匿名使用数据，以分析应用使用情况</li>
+</ul>
+<h3>3.2 法律要求</h3>
+<ul>
+<li>在法律要求的情况下，我们可能会披露您的信息</li>
+<li>为保护我们的权利、财产或安全，我们可能会披露您的信息</li>
+</ul>
+<h2>4. 数据存储</h2>
+<h3>4.1 存储方式</h3>
+<ul>
+<li>游戏数据存储在您的设备本地</li>
+<li>不涉及云端存储个人数据</li>
+</ul>
+<h3>4.2 存储期限</h3>
+<ul>
+<li>游戏数据将一直存储，直到您卸载应用或清除应用数据</li>
+<li>广告相关数据将根据广告服务提供商的政策存储</li>
+</ul>
+<h2>5. 用户权利</h2>
+<h3>5.1 选择退出个性化广告</h3>
+<ul>
+<li>您可以在设备设置中限制广告追踪</li>
+<li>路径：设置 → 隐私 → 广告 → 限制广告追踪</li>
+</ul>
+<h3>5.2 删除数据</h3>
+<ul>
+<li>您可以通过卸载应用来删除所有游戏数据</li>
+<li>您可以通过清除应用数据来删除游戏进度和分数</li>
+</ul>
+<h2>6. 儿童隐私</h2>
+<ul>
+<li>我们的应用适合所有年龄段用户</li>
+<li>我们不会故意收集 13 岁以下儿童的个人信息</li>
+<li>如果我们发现收集了 13 岁以下儿童的信息，我们将立即删除</li>
+</ul>
+<h2>7. 隐私政策更新</h2>
+<ul>
+<li>我们可能会不时更新本隐私政策</li>
+<li>更新后的隐私政策将在应用内或我们的网站上发布</li>
+<li>继续使用应用即表示您同意更新后的隐私政策</li>
+</ul>
+<h2>8. 联系方式</h2>
+<p>如果您对本隐私政策有任何疑问或建议，请通过以下方式联系我们：</p>
+<ul>
+<li>电子邮件：privacy@game2048.com</li>
+<li>地址：中国北京市海淀区</li>
+</ul>
+<h2>9. 应用内购买</h2>
+<ul>
+<li>我们提供应用内购买选项，用于移除广告</li>
+<li>所有购买交易均通过 Apple App Store 处理</li>
+<li>购买相关信息将按照 Apple 的隐私政策处理</li>
+</ul>
       
     </div>
     <footer class="article-footer">
@@ -164,64 +242,3 @@ def generate_full_html(title, content, language='zh'):
   </div>
 </body>
 </html>
-'''
-    return template
-
-# 处理单个Markdown文件
-def process_file(input_file, output_file, title):
-    markdown_text = read_markdown(input_file)
-    html_content = convert_to_html(markdown_text)
-    full_html = generate_full_html(title, html_content)
-    
-    # 确保输出目录存在
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)
-    
-    with open(output_file, 'w', encoding='utf-8') as f:
-        f.write(full_html)
-    
-    print(f"Converted {input_file} to {output_file}")
-
-# 自动处理所有应用的隐私政策
-def process_all_privacy_policies():
-    privacy_dir = 'privacy'
-    
-    # 遍历privacy目录下的所有应用文件夹
-    for app_name in os.listdir(privacy_dir):
-        app_dir = os.path.join(privacy_dir, app_name)
-        
-        # 确保是目录
-        if not os.path.isdir(app_dir):
-            continue
-        
-        # 处理中文隐私政策（支持多种命名方式）
-        zh_file = None
-        for filename in ['privacy.md', 'ch.md', 'zh.md', 'cn.md']:
-            candidate = os.path.join(app_dir, filename)
-            if os.path.exists(candidate):
-                zh_file = candidate
-                break
-        
-        if zh_file:
-            output_file = os.path.join(app_dir, 'index.html')
-            title = f'{app_name}隐私政策'
-            process_file(zh_file, output_file, title)
-        
-        # 处理英文隐私政策（支持多种命名方式）
-        en_file = None
-        for filename in ['privacy-eng.md', 'eng.md', 'en.md']:
-            candidate = os.path.join(app_dir, filename)
-            if os.path.exists(candidate):
-                en_file = candidate
-                break
-        
-        if en_file:
-            output_file = os.path.join(app_dir, 'index-eng.html')
-            title = f'{app_name} Privacy Policy'
-            process_file(en_file, output_file, title)
-
-# 主函数
-def main():
-    process_all_privacy_policies()
-
-if __name__ == '__main__':
-    main()
