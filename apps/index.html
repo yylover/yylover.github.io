@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>iOS应用技术支持 | App Support</title>
+  <title>应用列表 | iOS应用技术支持</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为多款iOS应用提供技术支持、隐私政策和相关信息">
+  <meta name="description" content="浏览我们的iOS应用列表">
   <meta property="og:type" content="website">
-<meta property="og:title" content="iOS应用技术支持">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:title" content="应用列表">
+<meta property="og:url" content="http://yoursite.com/apps/index.html">
 <meta property="og:site_name" content="iOS应用技术支持">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS应用技术支持">
+<meta name="twitter:title" content="应用列表">
   
     <link rel="alternative" href="/atom.xml" title="iOS应用技术支持" type="application/atom+xml">
   
@@ -68,45 +68,40 @@
       <div class="outer">
         <section id="main">
   
-  <div class="home-banner">
-    <h2>欢迎访问iOS应用技术支持网站</h2>
-    <p>为您提供多款iOS应用的技术支持、隐私政策和相关信息</p>
+  <div class="page-header">
+    <h1>应用列表</h1>
+    <p>浏览我们的iOS应用，了解更多详情和下载信息</p>
   </div>
 
-  <div class="app-showcase">
-    <h3>精选应用</h3>
-    <div class="app-grid">
-      <div class="app-card">
-        <div class="app-icon">
-          <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=calculator%20app%20icon%20ios%20style&image_size=square" alt="生活计算器">
-        </div>
-        <h4>生活计算器</h4>
-        <p>功能强大的生活计算工具</p>
-        <a href="/apps/calculator" class="app-link">了解更多</a>
-      </div>
-      
-      <!-- 更多应用卡片将在这里添加 -->
+  <div class="app-filter">
+    <h3>应用分类</h3>
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="utilities">工具类</button>
+      <button class="filter-btn" data-filter="productivity">生产力</button>
+      <button class="filter-btn" data-filter="health">健康类</button>
+      <button class="filter-btn" data-filter="education">教育类</button>
     </div>
   </div>
 
-  <div class="recent-updates">
-    <h3>最近更新</h3>
-    <div class="update-list">
-      <div class="update-item">
-        <span class="update-date">2026-02-14</span>
-        <h4>生活计算器隐私政策更新</h4>
-        <p>更新了生活计算器的隐私政策，增加了更多详细信息</p>
-        <a href="/privacy/calculator" class="update-link">查看详情</a>
+  <div class="app-list">
+    <div class="app-card" data-category="utilities">
+      <div class="app-icon">
+        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=calculator%20app%20icon%20ios%20style&image_size=square" alt="生活计算器">
       </div>
-      
-      <!-- 更多更新项目将在这里添加 -->
+      <h4>生活计算器</h4>
+      <p>功能强大的生活计算工具，支持多种计算模式和汇率转换</p>
+      <div class="app-info">
+        <span class="app-category">工具类</span>
+        <span class="app-version">版本 1.0.0</span>
+      </div>
+      <div class="app-links">
+        <a href="/apps/calculator" class="app-link">应用详情</a>
+        <a href="/privacy/calculator" class="privacy-link">隐私政策</a>
+      </div>
     </div>
-  </div>
 
-  <div class="support-info">
-    <h3>技术支持</h3>
-    <p>如果您在使用我们的应用时遇到任何问题，请访问我们的技术支持页面获取帮助。</p>
-    <a href="/support" class="support-link">获取支持</a>
+    <!-- 更多应用卡片将在这里添加 -->
   </div>
 
 </section>
@@ -122,10 +117,10 @@
     <h3 class="widget-title">应用分类</h3>
     <div class="widget">
       <ul>
-        <li><a href="/apps/utilities">工具类应用</a></li>
-        <li><a href="/apps/productivity"> productivity应用</a></li>
-        <li><a href="/apps/health">健康类应用</a></li>
-        <li><a href="/apps/education">教育类应用</a></li>
+        <li><a href="/apps/?category=utilities">工具类应用</a></li>
+        <li><a href="/apps/?category=productivity">生产力应用</a></li>
+        <li><a href="/apps/?category=health">健康类应用</a></li>
+        <li><a href="/apps/?category=education">教育类应用</a></li>
       </ul>
     </div>
   </div>
@@ -133,25 +128,23 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">快速链接</h3>
-    <div class="widget">
-      <ul>
-        <li><a href="/privacy">隐私政策</a></li>
-        <li><a href="/support/faq">常见问题</a></li>
-        <li><a href="/support/contact">联系我们</a></li>
-        <li><a href="/about">关于我们</a></li>
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新应用</h3>
+    <h3 class="widget-title">热门应用</h3>
     <div class="widget">
       <ul>
         <li><a href="/apps/calculator">生活计算器</a></li>
-        <!-- 更多最新应用将在这里添加 -->
+        <!-- 更多热门应用将在这里添加 -->
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新更新</h3>
+    <div class="widget">
+      <ul>
+        <li><a href="/apps/calculator">生活计算器 (2026-02-14)</a></li>
+        <!-- 更多最新更新将在这里添加 -->
       </ul>
     </div>
   </div>
@@ -193,6 +186,29 @@
 
 
 <script src="/js/script.js"></script>
+
+<script>
+  // 应用过滤功能
+  $(document).ready(function() {
+    $('.filter-btn').click(function() {
+      // 移除所有按钮的active类
+      $('.filter-btn').removeClass('active');
+      // 为当前按钮添加active类
+      $(this).addClass('active');
+      
+      // 获取当前过滤值
+      var filter = $(this).data('filter');
+      
+      // 过滤应用卡片
+      if (filter === 'all') {
+        $('.app-card').show();
+      } else {
+        $('.app-card').hide();
+        $('.app-card[data-category="' + filter + '"]').show();
+      }
+    });
+  });
+</script>
 
   </div>
 </body>
