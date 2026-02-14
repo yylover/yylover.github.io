@@ -52,7 +52,13 @@ def generate_full_html(title, content, language='zh'):
         
           <a class="main-nav-link" href="/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/apps">应用</a>
+        
+          <a class="main-nav-link" href="/privacy">隐私政策</a>
+        
+          <a class="main-nav-link" href="/support">技术支持</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
         
       </nav>
       <nav id="sub-nav">
@@ -102,62 +108,18 @@ def generate_full_html(title, content, language='zh'):
   </div>
   
   
+  
     
 </article>
 
 </section>
-        
-          <aside id="sidebar">
-  
-    
-  
-    
-  
-    
-  
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recents</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/07/11/重构/重构基础/">重构基础</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/11/go/Go语言特性/">Go语言特性</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/11/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/23/go/go语言基础/">no title</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
       <footer id="footer">
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2016 yylover<br>
+      &copy; 2026 yylover<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -167,7 +129,13 @@ def generate_full_html(title, content, language='zh'):
   
     <a href="/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/apps" class="mobile-nav-link">应用</a>
+  
+    <a href="/privacy" class="mobile-nav-link">隐私政策</a>
+  
+    <a href="/support" class="mobile-nav-link">技术支持</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
   
 </nav>
     
@@ -201,21 +169,35 @@ def process_file(input_file, output_file, title):
     
     print(f"Converted {input_file} to {output_file}")
 
+# 自动处理所有应用的隐私政策
+def process_all_privacy_policies():
+    privacy_dir = 'privacy'
+    
+    # 遍历privacy目录下的所有应用文件夹
+    for app_name in os.listdir(privacy_dir):
+        app_dir = os.path.join(privacy_dir, app_name)
+        
+        # 确保是目录
+        if not os.path.isdir(app_dir):
+            continue
+        
+        # 处理中文隐私政策
+        zh_file = os.path.join(app_dir, 'privacy.md')
+        if os.path.exists(zh_file):
+            output_file = os.path.join(app_dir, 'index.html')
+            title = f'{app_name}隐私政策'
+            process_file(zh_file, output_file, title)
+        
+        # 处理英文隐私政策
+        en_file = os.path.join(app_dir, 'privacy-eng.md')
+        if os.path.exists(en_file):
+            output_file = os.path.join(app_dir, 'index-eng.html')
+            title = f'{app_name} Privacy Policy'
+            process_file(en_file, output_file, title)
+
 # 主函数
 def main():
-    # 处理中文隐私政策
-    process_file(
-        'privacy/caculator/privacy.md',
-        'privacy/caculator/index.html',
-        '生活计算器隐私政策'
-    )
-    
-    # 处理英文隐私政策
-    process_file(
-        'privacy/caculator/privacy-eng.md',
-        'privacy/caculator/index-eng.html',
-        'Life Calculator Privacy Policy'
-    )
+    process_all_privacy_policies()
 
 if __name__ == '__main__':
     main()
